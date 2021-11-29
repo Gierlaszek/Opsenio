@@ -1,4 +1,4 @@
-package app.opsenioapp.Database;
+package app.opsenioapp.BikeDatabase;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

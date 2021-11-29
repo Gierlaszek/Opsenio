@@ -1,13 +1,13 @@
-package app.opsenioapp.Bikes;
+package app.opsenioapp.BikeDatabase;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import app.opsenioapp.Database.BikeDB;
-import app.opsenioapp.Database.BikeDao;
-import app.opsenioapp.Database.BikeDatabase;
+import app.opsenioapp.BikeDatabase.BikeDB;
+import app.opsenioapp.BikeDatabase.BikeDao;
+import app.opsenioapp.BikeDatabase.BikeDatabase;
+import app.opsenioapp.BikeDatabase.SampleData;
 
 /*
 Presenter
@@ -15,6 +15,7 @@ Presenter
 public class BikePresenter {
 
     private BikeDao bikeDao;
+    private SampleData data;
 
     public BikePresenter(Context context){
         BikeDatabase database = BikeDatabase.getDatabase(context);
@@ -25,11 +26,18 @@ public class BikePresenter {
         bikeDao.deleteBike(bike);
     }
 
+    public void removeAllBike() {bikeDao.deleteAll();}
+
     public void storeBike(BikeDB bike){
         bikeDao.insertBike(bike);
     }
 
     public List<BikeDB> fetchBike(){
         return bikeDao.getAll();
+    }
+
+    public void addData(){
+        data = new SampleData(this);
+        data.addSomeData();
     }
 }

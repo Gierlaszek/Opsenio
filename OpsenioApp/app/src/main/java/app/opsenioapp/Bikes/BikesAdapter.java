@@ -9,10 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import app.opsenioapp.Database.BikeDB;
+import app.opsenioapp.BikeDatabase.BikeDB;
 import app.opsenioapp.R;
 import app.opsenioapp.ShoppingCart.ShoppingCart;
 
@@ -42,7 +41,10 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.ViewHolder> 
             holder.brand.setText(bikeList.get(position).brand);
             holder.color.setText(bikeList.get(position).color);
             holder.price.setText(bikeList.get(position).price);
-            holder.add.setOnClickListener(v -> cart.addItem(bikeList.get(position)));
+            holder.add.setOnClickListener(v -> {
+                cart.addItem(bikeList.get(position));
+                cart.updateNumber();
+            });
         }
     }
 

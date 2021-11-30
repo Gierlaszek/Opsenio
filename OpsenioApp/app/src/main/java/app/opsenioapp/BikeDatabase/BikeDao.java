@@ -17,7 +17,7 @@ public interface BikeDao {
     List<BikeDB> getAll();
 
     @Query("SELECT * FROM bikesList WHERE id=:id LIMIT 1")
-    BikeDB getItemId(String id);
+    BikeDB getItemId(int id);
 
     @Query("DELETE FROM bikesList")
     void deleteAll();

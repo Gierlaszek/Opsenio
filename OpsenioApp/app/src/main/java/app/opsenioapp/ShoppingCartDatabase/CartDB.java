@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "shoppingList")
 public class CartDB {
     @PrimaryKey
-    public int id; //bike id
-    public int count; //number of bikes
+    public int id;
+    public int count;
 
     public CartDB(int id, int count){
         this.id = id;

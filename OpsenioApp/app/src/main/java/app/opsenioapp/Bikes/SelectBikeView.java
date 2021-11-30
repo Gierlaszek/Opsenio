@@ -8,6 +8,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +19,8 @@ import app.opsenioapp.BikeDatabase.BikePresenter;
 import app.opsenioapp.R;
 import app.opsenioapp.ShoppingCart.ShoppingCart;
 
-/*
-View
- */
-public class SelectBike extends Fragment implements ShoppingCart.View{
+
+public class SelectBikeView extends Fragment implements ShoppingCart.View{
 
     private ImageButton shoppingCart;
     private BikesAdapter bikesAdapter;
@@ -26,7 +28,7 @@ public class SelectBike extends Fragment implements ShoppingCart.View{
     private ShoppingCart cart;
     private TextView countInCart;
 
-    public SelectBike(){
+    public SelectBikeView(){
     }
 
     @Override
@@ -35,16 +37,12 @@ public class SelectBike extends Fragment implements ShoppingCart.View{
         View view = inflater.inflate(R.layout.fragment_main_window, container, false);
 
         BikePresenter presenter = new BikePresenter(getContext());
-
-        /*
-        Do zmiany
-         */
-//        presenter.removeAllBike();
-//        presenter.addData();
+        presenter.addData();
 
         countInCart = view.findViewById(R.id.countInCart);
 
-        cart = new ShoppingCart(this, this.getContext(), presenter);
+        cart = ShoppingCart.getInstance();
+        cart.setShoppingCart(this, this.getContext(), presenter);
 
         bikesAdapter = new BikesAdapter(presenter.fetchBike(), cart);
         bikesListView = view.findViewById(R.id.bikeListView);
@@ -53,7 +51,7 @@ public class SelectBike extends Fragment implements ShoppingCart.View{
 
         shoppingCart = view.findViewById(R.id.cart);
         shoppingCart.setOnClickListener(v -> {
-            //open shopping cart
+            Navigation.findNavController(view).navigate(R.id.action_selectBike_to_shoppingCartView);
         });
 
         return view;

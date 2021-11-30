@@ -40,7 +40,7 @@ public class BikesAdapter extends RecyclerView.Adapter<BikesAdapter.ViewHolder> 
             holder.name.setText(bikeList.get(position).name);
             holder.brand.setText(bikeList.get(position).brand);
             holder.color.setText(bikeList.get(position).color);
-            holder.price.setText(bikeList.get(position).price);
+            holder.price.setText(String.valueOf(bikeList.get(position).price));
             holder.add.setOnClickListener(v -> {
                 cart.addItem(bikeList.get(position));
                 cart.updateNumber();

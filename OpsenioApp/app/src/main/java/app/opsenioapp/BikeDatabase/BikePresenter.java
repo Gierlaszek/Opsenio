@@ -9,9 +9,6 @@ import app.opsenioapp.BikeDatabase.BikeDao;
 import app.opsenioapp.BikeDatabase.BikeDatabase;
 import app.opsenioapp.BikeDatabase.SampleData;
 
-/*
-Presenter
- */
 public class BikePresenter {
 
     private BikeDao bikeDao;
@@ -20,6 +17,10 @@ public class BikePresenter {
     public BikePresenter(Context context){
         BikeDatabase database = BikeDatabase.getDatabase(context);
         this.bikeDao = database.bikeDao();
+    }
+
+    public BikeDB getBikeById(int id){
+        return bikeDao.getItemId(id);
     }
 
     public void removeBike(BikeDB bike){

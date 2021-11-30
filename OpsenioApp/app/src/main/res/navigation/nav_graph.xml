@@ -5,6 +5,20 @@
     app:startDestination="@id/selectBike">
     <fragment
         android:id="@+id/selectBike"
-        android:name="app.opsenioapp.Bikes.SelectBike"
-        android:label="SelectBike" />
+        android:name="app.opsenioapp.Bikes.SelectBikeView"
+        android:label="SelectBike" >
+        <action
+            android:id="@+id/action_selectBike_to_shoppingCartView"
+            app:destination="@id/shoppingCartView">
+
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/shoppingCartView"
+        android:name="app.opsenioapp.ShoppingCart.ShoppingCartView"
+        android:label="ShoppingCartView" >
+        <action
+            android:id="@+id/action_shoppingCartView_to_selectBike"
+            app:destination="@id/selectBike" />
+    </fragment>
 </navigation>
